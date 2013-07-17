@@ -29,21 +29,21 @@ main(int argc, char* argv[])
 {
     // Init the common variables
     ppnfs_client_config_init();
-
+	
     /* printf ("sizeof double = %d\n", sizeof(double)); */
-
+	
     // start connecting server
     ppnfs_client_net_start();
-
+	
     // Open the metafile
     ppnfs_client_metadata_init();
-
+	
     // GR-PIR variables initialization
     ppnfs_client_grpir_init();
-
+	
     // Enable the FUSE impl
     void* user_data = NULL;
     fuse_main(argc, argv, &ppnfs_oper, user_data);
-
+	
     return 0;
 }

@@ -24,21 +24,21 @@ struct ppnfs_metadata_t
 {
     hash_t hash;
     char d_name[NAME_MAX+1];
-
+	
     ppnfs_metadata_id id;     //< Myself
     ppnfs_metadata_id father; //< Pointer to my father dir
     ppnfs_metadata_id child;  //< First child (head of the tree)
     ppnfs_metadata_id next;   //< Next child
-
+	
     ppnfs_metadata_id up;     //< Hashtree father
     ppnfs_metadata_id left;   //< Hashtree left part, where all hashes are stricly inf
     ppnfs_metadata_id right;  //< Hashtree right part, where hashes are equal or sup (collision mgmt)
-
+	
     ppnfs_metadata_id collision_next;     //< Collision : next in the linked-list of colliders
     ppnfs_metadata_id collision_previous; //< Collision : previous in the linked-list of colliders
-
+	
     struct stat st;
-
+	
     // GR-PIR variables
     unsigned int prime;
     unsigned int c;

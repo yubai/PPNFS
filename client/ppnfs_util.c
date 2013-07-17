@@ -50,7 +50,7 @@ hash_t continueHashPartial ( hash_t h, const char* str, int sz )
     unsigned char d;
     for ( c = str ; *c ; c++ ) {
         d = (unsigned char)(*c);
-
+		
         h += d + d % 2;
         cur++;
         if ( cur == sz ) break;
@@ -92,7 +92,7 @@ void groupStr(char *dest, char *src)
     char high, low;
     char *p;
     char *q;
-
+	
     size_t len = strlen(src);
     int i;
     //if (len < (NR_BITPERBLK >> 3)) {
@@ -106,7 +106,7 @@ void groupStr(char *dest, char *src)
     //        *p++ = '0';
     //    }
     //}
-
+	
     if ((len % 2) != 0) {
         p = src + len -1;
         q = src + len;
@@ -115,10 +115,10 @@ void groupStr(char *dest, char *src)
         }
         *src = '0';
     }
-
+	
     p = dest;
     q = src;
-
+	
     while (*q) {
         high = ppnfs_client_convert(*q++);
         low = ppnfs_client_convert(*q++);

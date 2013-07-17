@@ -38,6 +38,6 @@ unsigned long long int ppnfs_grpir_get_blk_nb();
 void init_rand( gmp_randstate_t rand, mpz_t seed, int bytes );
 
 void ppnfs_genmodulus(struct ppnfs_metadata_t* mdata, int nbits,
-                     gmp_randstate_t rand, mpz_t* g, mpz_t* q, mpz_t* M);
+					  gmp_randstate_t rand, mpz_t* g, mpz_t* q, mpz_t* M);
 
 #endif

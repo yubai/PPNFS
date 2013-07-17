@@ -36,9 +36,9 @@ get_rand_file( void* buf, int len, char* file )
 {
 	FILE* fp;
 	void* p;
-
+	
 	fp = fopen(file, "r");
-
+	
 	p = buf;
 	while( len ) {
 		size_t s;
@@ -46,7 +46,7 @@ get_rand_file( void* buf, int len, char* file )
 		p += s;
 		len -= s;
 	}
-
+	
 	fclose(fp);
 }
 
@@ -60,7 +60,7 @@ void
 _init_rand( gmp_randstate_t rand, get_rand_t get_rand, mpz_t seed, int bytes )
 {
 	void* buf;
-
+	
 	buf = malloc(bytes);
 	get_rand(buf, bytes);
 	gmp_randinit_default(rand);
@@ -122,7 +122,7 @@ void GenerateQ1(mpz_t Q1, mpz_t q1, int nbits, gmp_randstate_t rand)
     do {
         mpz_urandomb(currentp, rand, nbits-1);
 	} while ( !mpz_tstbit(currentp, nbits - 2) );
-
+	
     do {
         //GeneratePrime(q1, nbits-1, rand);
         GeneratePrime2(q1, currentp);
@@ -137,26 +137,26 @@ void GenerateQ1(mpz_t Q1, mpz_t q1, int nbits, gmp_randstate_t rand)
  */
 void
 ppnfs_genmodulus(struct ppnfs_metadata_t* mdata, int nbits, gmp_randstate_t rand,
-                mpz_t* g, mpz_t* q, mpz_t* M)
+				 mpz_t* g, mpz_t* q, mpz_t* M)
 {
     mpz_t q0, q1, Q0, Q1;
-
+	
     mpz_t pi;
     mpz_init(pi);
     gmp_sscanf(mdata->pi, "%Zx\n", &pi);
-
+	
     mpz_init(*q);
     mpz_init(*M);
-
+	
     mpz_init(q0);
     mpz_init(q1);
     mpz_init(Q0);
     mpz_init(Q1);
-
+	
     GenerateQ0(Q0, q0, pi, nbits*3/4, rand);
     GenerateQ1(Q1, q1, nbits/4, rand);
     mpz_mul(*M, Q0, Q1);
-
+	
     //find the generator
     //choose a random g in Zm
     while(1) {
@@ -196,9 +196,9 @@ ppnfs_genmodulus(struct ppnfs_metadata_t* mdata, int nbits, gmp_randstate_t rand
 		}
         if (bg == 0)
             continue;
-
+		
         mpz_mul(*q, q0, q1);
-
+		
         break;
 	}
 }

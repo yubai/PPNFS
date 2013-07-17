@@ -31,24 +31,24 @@ int ppnfs_target_init()
 {
     int res = 0;
     struct ppnfs_metadata_t* mfather, *mchild;
-
+	
     mfather = ppnfs_metadata_find("/");
     if (!mfather) return -ENOENT;
-
+	
     ppnfs_metadata_release(mfather);
-
+	
     queue<struct ppnfs_metadata_t*> dirque; // A queue to store the directories
     dirque.push(mfather);
-
+	
     while (!dirque.empty()) {
         mfather = dirque.front();
         // The father's id may change by calling the ppnfs_metadata_get_child function
         // Should really be very carefull here!!!
         for (mchild = ppnfs_metadata_get_child(mfather); mchild; mchild
-                 = ppnfs_metadata_get(mchild->next)) {
+			 = ppnfs_metadata_get(mchild->next)) {
             Log ( "READDIR    '%s' (%p, next=%llu)\n",
-                  mchild->d_name, mchild, mchild->next );
-
+				 mchild->d_name, mchild, mchild->next );
+			
             if (S_ISDIR( mchild->st.st_mode )) {
                 dirque.push(mchild);
                 continue;
@@ -56,6 +56,6 @@ int ppnfs_target_init()
         }
         dirque.pop();
     }
-
+	
     return res;
 }

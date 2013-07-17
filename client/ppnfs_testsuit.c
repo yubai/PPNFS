@@ -26,12 +26,12 @@ int
 main(int argc, char* argv[])
 {
     int nb = 1;
-
+	
     Log("Test Log() -- The %d time.\n", nb++);
     Info("Test Info() -- The %d time.\n", nb++);
     Warn("Test Warn() -- The %d time.\n", nb++);
     Err("Test Err() -- The %d time.\n", nb++);
     Bug("Test Bug() -- The %d time.\n", nb++);
-
+	
     return 0;
 }
